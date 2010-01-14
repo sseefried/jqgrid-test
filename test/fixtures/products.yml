@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  quantity: 1
+  price: 9.99
+  description: MyText
+  available: false
+
+two:
+  quantity: 1
+  price: 9.99
+  description: MyText
+  available: false
