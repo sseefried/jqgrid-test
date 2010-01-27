@@ -29,12 +29,16 @@
 
   <%= jqgrid("List of products", "product_table", "/products", 
 	     [
-              { :field => 'name', :label => "Name" },
-              { :field => 'description', :label => 'Description' },
-              { :field => 'quantity', :label => 'Quantity' },
-              { :field => 'price', :label => 'Price' },
-              { :field => 'available', :label => 'Available' }
-             ]) %>
+              { :field => 'name', :label => "Name", :editable => true },
+              { :field => 'description', :label => 'Description', :editable => true },
+              { :field => 'quantity', :label => 'Quantity', :editable => true },
+              { :field => 'price', :label => 'Price', :editable => true },
+              { :field => 'available', :label => 'Available', :editable => true }
+             ], { :sort_column => 'name', :sort_order => 'asc', 
+                  :edit => true,
+                  :inline_edit => true,
+                  :add => true,
+                  :delete => true, :edit_url => "/products/post_data" }) %>
    
 	     
 

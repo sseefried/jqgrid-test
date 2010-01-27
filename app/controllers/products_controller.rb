@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  protect_from_forgery :except => [:post_data]
+
   def index
     order = params[:sidx] && params[:sidx].length >0 && params[:sord] && params[:sord].length > 0  ?  "#{params[:sidx]} #{params[:sord]}" : nil
 
@@ -10,6 +12,23 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @products }
       format.json { render :json => @products.to_jqgrid_json([:name, :description, :quantity, :price, :available ], params[:page], params[:rows], @products.size) }
     end
+  end
+
+
+  def post_data
+    if params[:oper] == "del"
+      Product.find(params[:id]).destroy
+    else
+      product_params = [ :name, :description, :quantity, :price, :available].inject({}) do |h,s|
+        h.merge({s => params[:s]})
+      end
+      if params[:id] == "_empty"
+        Product.create(product_params)
+      else
+        Product.find(params[:id]).update_attributes(product_params)
+      end
+    end
+    render :nothing => true
   end
 
   ###################### Scaffold methods ####################################

@@ -1,30 +1,50 @@
-Installing jqGrid 3.6.2
------------------------
+Introduction
+============
+Turns out there was a plug-in for this already:
 
-jqGrid had a very interesting system for downloading and
-installing. You had to "build" the .js file on their website by
-selecting (by checking checkboxes) various features that you wanted in
-your plugin. In this demo I checked all the functionality. This
-resulted in a file about 200k large (even when minimised) so we may
-very well want to be selective.
+% ./script/plugin install git://github.com/ahe/2dc_jqgrid.git
 
-% cp css/ui.jqgrid.css path/to/app/public/stylesheets
 
-% cp js/jquery-1.3.2.min       /path/to/app/public/javascripts
-% cp js/i18n/grid.locale-en.js /path/to/app/public/javascripts
-% cp js/jquery.jqGrid.min      /path/to/app/public/javascripts
+Testing
+=======
 
-Layout file: app/views/layouts/products.html.erb
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To test this application
 
-<html>
-<head>
-<%= stylesheet_link_tag "ui.jqgrid.css" %>
-<%= javascript_include_tag "jquery-1.3.2.min" %>
-<%= javascript_include_tag "grid.locale-en" %>
-<%= javascript_include_tag "jquery.jqGrid.min" %>
-</head>
-<body>
-<%= yield %>
-</body>
-</html>
+% rake db:initialise
+
+This will blow away the old database and create a new one filled with some products. Now type:
+
+% script/server 
+
+and navigate to http://localhost:3000
+
+You will get a table that is sortable, editable and that you can add and delete products from.
+
+
+Issues
+======
+- The delete dialogue stays up after you have deleted products. This
+  might 
+- Inline editing is cool but only seems to work for strings and
+  numbers.  What about validation? What about check boxes and other
+  editing controls?
+
+
+Future work
+===========
+
+This plugin is great but it still requires a little too much work in
+the controllers. For instance, consider the post_data method in
+app/controllers/products_controller.rb. There's a bit too much domain
+specific stuff in there. Consider lines like:
+
+19     if params[:oper] == "del"
+25     if params[:id] == "_empty"
+
+The plugin should probably provide some methods to automatically add
+such methods to the controller dynamically.  
+
+  
+
+
+
