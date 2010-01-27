@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20100114234746) do
   create_table "products", :force => true do |t|
     t.integer  "quantity"
     t.decimal  "price"
+    t.string   "name"
     t.text     "description"
     t.boolean  "available"
     t.datetime "created_at"

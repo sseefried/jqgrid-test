@@ -3,11 +3,16 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.integer :quantity
       t.decimal :price
+      t.string :name
       t.text :description
       t.boolean :available
 
       t.timestamps
     end
+
+    
+
+
   end
 
   def self.down
