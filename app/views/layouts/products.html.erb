@@ -6,10 +6,13 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Products: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
-<%= stylesheet_link_tag "ui.jqgrid.css" %>
-<%= javascript_include_tag "jquery-1.3.2.min" %>
-<%= javascript_include_tag "grid.locale-en" %>
-<%= javascript_include_tag "jquery.jqGrid.min" %>
+<%= javascript_include_tag 'jquery-1.3.2.min' %>
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %>
+
+<script>
+  jQuery.noConflict(); /* So there is no conflict with prototype */
+</script>
 
 </head>
 <body>

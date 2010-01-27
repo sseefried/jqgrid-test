@@ -1,5 +1,8 @@
 <h1>Listing products</h1>
 
+
+
+<!--
 <table>
   <tr>
     <th>Quantity</th>
@@ -22,6 +25,18 @@
   </tr>
 <% end %>
 </table>
+-->
+
+  <%= jqgrid("List of products", "product_table", "/products", 
+	     [
+              { :field => 'name', :label => "Name" },
+              { :field => 'description', :label => 'Description' },
+              { :field => 'quantity', :label => 'Quantity' },
+              { :field => 'price', :label => 'Price' },
+              { :field => 'available', :label => 'Available' }
+             ]) %>
+   
+	     
 
 <br />
 

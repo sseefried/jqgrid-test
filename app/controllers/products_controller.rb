@@ -1,14 +1,18 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.xml
+
   def index
-    @products = Product.all
+    order = params[:sidx] && params[:sidx].length >0 && params[:sord] && params[:sord].length > 0  ?  "#{params[:sidx]} #{params[:sord]}" : nil
+
+    @products = Product.paginate :page => params[:page], :per_page => params[:rows], :order => order
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
+      format.json { render :json => @products.to_jqgrid_json([:name, :description, :quantity, :price, :available ], params[:page], params[:rows], @products.size) }
     end
   end
+
+  ###################### Scaffold methods ####################################
 
   # GET /products/1
   # GET /products/1.xml
@@ -82,4 +86,5 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end
