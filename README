@@ -20,6 +20,22 @@ and navigate to http://localhost:3000
 
 You will get a table that is sortable, editable and that you can add and delete products from.
 
+Source files and URLs to examine
+=======================
+
+
+app/view/layouts/products.html.erb
+app/view/products/index.html.erb
+app/controllers/products_controller.rb
+
+It's also worth having a look at the plug-in itself in:
+
+vendor/plugins/2dc_jqgrid/lib/2dc_jqgrid.rb
+
+Last of all, check out the tutorial on the plug-in at:
+
+http://www.2dconcept.com/jquery-grid-rails-plugin
+
 
 Issues
 ======
